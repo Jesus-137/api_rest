@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const getUsuarioController_1 = require("../controller/getUsuarioController");
+const getIdUsuarioController_1 = require("../controller/getIdUsuarioController");
+const crearUsuarioController_1 = require("../controller/crearUsuarioController");
+const actualizarUsuarioController_1 = require("../controller/actualizarUsuarioController");
+const eliminarUsuarioController_1 = require("../controller/eliminarUsuarioController");
+const Dependencies_1 = require("../Dependencies");
+const router = express_1.default.Router();
+router.get('/', getUsuarioController_1.getUsuarioController);
+router.get('/:id', getIdUsuarioController_1.getIdUsuarioController);
+router.post('/', crearUsuarioController_1.crearUsuarioController);
+router.put('/:id', actualizarUsuarioController_1.actualizarUsuarioController);
+router.delete('/:id', eliminarUsuarioController_1.eliminarUsuarioController);
+router.post('/:id/sender', Dependencies_1.senderEmailController.run.bind(Dependencies_1.senderEmailController));
+exports.default = router;
